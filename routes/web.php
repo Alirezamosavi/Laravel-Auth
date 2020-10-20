@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\NewUserNotification;
 
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/send-mail', function () {
+
+    Mail::to('alirezamosavi346@gmail.com')->send(new NewUserNotification()); 
+
+    return 'A message has been sent to Mailtrap!';
+
+});
 
 Route::get('/', function () {
     return view('welcome');
